@@ -27,7 +27,8 @@ class PaymentView(APIView, SerializingSupportMixin):
             booking = Booking.objects.get(pk=pk_booking)
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-
+        if is_paid(booking.sale):
+            return Response(data={"se concluyo con el pago"}, status=status.HTTP_400_BAD_REQUEST)
         obj = PaymentSerializer(data=request.data)
         obj.is_valid(raise_exception=True)
         payment = obj.save()
