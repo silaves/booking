@@ -3,6 +3,7 @@ from django.db import models
 from .base import BaseModel
 from .room_type import RoomType
 
+
 class Room(BaseModel):
     AVAILABLE = 'available'
     BOOKED = 'booked'
